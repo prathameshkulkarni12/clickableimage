@@ -36,9 +36,20 @@ public class ClickableAreasImage implements PhotoViewAttacher.OnPhotoTapListener
 
 
     private void getImageDimensions(ImageView imageView){
-        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P){
+    // Do something for lollipop and above versions
+             BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+        imageWidthInPx = (int)  drawable.getBitmap().getWidth() ;
+        imageHeightInPx = (int) drawable.getBitmap().getHeight();
+} else{
+    // do something for phones running an SDK before lollipop
+             BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
         imageWidthInPx = (int) (drawable.getBitmap().getWidth() / Resources.getSystem().getDisplayMetrics().density);
         imageHeightInPx = (int) (drawable.getBitmap().getHeight() / Resources.getSystem().getDisplayMetrics().density);
+}
+//         BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+//         imageWidthInPx = (int) (drawable.getBitmap().getWidth() / Resources.getSystem().getDisplayMetrics().density);
+//         imageHeightInPx = (int) (drawable.getBitmap().getHeight() / Resources.getSystem().getDisplayMetrics().density);
     }
 
     @Override
