@@ -37,8 +37,8 @@ public class ClickableAreasImage implements PhotoViewAttacher.OnPhotoTapListener
 
 
     private void getImageDimensions(ImageView imageView){
-        imageWidthInPx = (int)  imageView.getWidth() ;
-        imageHeightInPx = (int) imageView.getHeight();
+        //imageWidthInPx = (int)  imageView.getWidth() ;
+        //imageHeightInPx = (int) imageView.getHeight();
 //         Bitmap b = ((BitmapDrawable)imageView.getBackground()).getBitmap();
 //         imageWidthInPx = (int)  b.getWidth() ;
 //         imageHeightInPx = (int) b.getHeight();
@@ -48,6 +48,16 @@ public class ClickableAreasImage implements PhotoViewAttacher.OnPhotoTapListener
 //         BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
 //         imageWidthInPx = (int) (drawable.getBitmap().getWidth() / Resources.getSystem().getDisplayMetrics().density);
 //         imageHeightInPx = (int) (drawable.getBitmap().getHeight() / Resources.getSystem().getDisplayMetrics().density);
+        //Abhishek
+        BitmapDrawable drawable2 = (BitmapDrawable) imageView.getDrawable();
+        //After SDK 28 (Android Pie), getBitmap() returns the actual size of the image on the screen
+        if (Build.VERSION.SDK_INT > 27) {
+            imageWidthInPx = (int) (drawable2.getBitmap().getWidth());
+            imageHeightInPx = (int) (drawable2.getBitmap().getHeight());
+        } else {
+            imageWidthInPx = (int) (drawable2.getBitmap().getWidth() / Resources.getSystem().getDisplayMetrics().density);
+            imageHeightInPx = (int) (drawable2.getBitmap().getHeight() / Resources.getSystem().getDisplayMetrics().density);
+        }
     }
 
     @Override
