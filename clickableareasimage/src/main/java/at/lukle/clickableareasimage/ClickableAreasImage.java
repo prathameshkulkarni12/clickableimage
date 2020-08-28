@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.ImageView;
+import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 import java.util.List;
