@@ -65,7 +65,7 @@ public class ClickableAreasImage implements PhotoViewAttacher.OnPhotoTapListener
         PixelPosition pixel = ImageUtils.getPixelPosition(x, y, imageWidthInPx, imageHeightInPx);
         List<ClickableArea> clickableAreas = getClickAbleAreas(pixel.getX(), pixel.getY());
         for(ClickableArea ca : clickableAreas){
-            listener.onClickableAreaTouched(ca.getItem());
+            listener.onClickableAreaTouched(ca.getItem(),view);
         }
     }
 
